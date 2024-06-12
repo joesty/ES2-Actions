@@ -1,4 +1,4 @@
-from timelog import Timelog
+from src.timelog import Timelog
 
 class User:
     def __init__(self, name, email):
@@ -9,7 +9,7 @@ class User:
     def __str__(self):
         return f"{self.name} <{self.email}>"
 
-    def add_timelog(self, timelog):
+    def add_timelog(self, timelog:Timelog):
         self.timelog.append(timelog)
 
     def get_worked_hours(self):
@@ -25,4 +25,6 @@ class User:
         return total
     
     def get_average_worked_hours(self):
+        if len(self.timelog) == 0:
+            return 0
         return self.get_worked_hours() / len(self.timelog)

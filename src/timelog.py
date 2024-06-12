@@ -1,3 +1,5 @@
+from datetime import datetime, timedelta
+
 class Timelog:
     def __init__(self) -> None:
         self.workStartTime = None
@@ -20,9 +22,13 @@ class Timelog:
     def get_worked_hours(self):
         if self.workStartTime is None or self.workEndTime is None:
             return 0
-        return self.workEndTime - self.workStartTime
+        if self.workEndTime < self.workStartTime:
+            return 0
+        return (self.workEndTime - self.workStartTime).seconds/3600
     
     def get_paused_hours(self):
         if self.pauseStartTime is None or self.pauseEndTime is None:
             return 0
-        return self.pauseEndTime - self.pauseStartTime
+        if self.pauseEndTime < self.pauseStartTime:
+            return 0
+        return (self.pauseEndTime - self.pauseStartTime).seconds/3600
