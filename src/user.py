@@ -28,3 +28,8 @@ class User:
         if len(self.timelog) == 0:
             return 0
         return self.get_worked_hours() / len(self.timelog)
+    
+    def get_average_paused_hours(self):
+        if len(self.timelog) == 0:
+            return 0
+        return self.get_paused_hours() / len(self.timelog)
